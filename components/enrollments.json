@@ -1,0 +1,83 @@
+[
+    {
+        "id": 1,
+        "title": "Web Development",
+        "description": "Learn the fundamentals of React Native and build mobile apps.",
+        "instructor": "John Doe",
+        "image": "https://www.webhopers.com/wp-content/uploads/2019/09/Top-10-Web-Development-Companies-in-USA.jpeg"
+    },
+    {
+        "id": 2,
+        "title": "App Development",
+        "description": "Master advanced JavaScript concepts and techniques.",
+        "instructor": "Jane Smith",
+        "image":"https://t4.ftcdn.net/jpg/04/04/21/61/360_F_404216128_AzxvFH2p321asyRWiGfH9G7XmqLb8zl8.jpg"
+    },
+ 
+    {
+        "id": 3,
+        "title": "Introduction to TypeScript",
+        "description": "Get started with TypeScript and understand its core features.",
+        "instructor": "Alice Johnson",
+        "image":"https://medium.com/@Rushabh_/introduction-to-typescript-empowering-javascript-development-e72f4ecb3184"
+    },
+    {
+        "id": 4,
+        "title": "Full-Stack Development",
+        "description": "Learn to build full-stack applications with React and Node.js.",
+        "instructor": "Bob Brown",
+        "image":"https://www.intuz.com/guide-to-full-stack-development"
+    },
+    {
+        "id": 5,
+        "title": "UI/UX Design Principles",
+        "description": "Understand the principles of UI/UX design and improve your design skills.",
+        "instructor": "Carol White",
+        "image":"https://www.uxdesigninstitute.com/blog/ux-vs-ui-design/"
+
+    },
+    {
+        "id": 6,
+        "title": "Data Structures and Algorithms",
+        "description": "Learn the fundamentals of data structures and algorithms.",
+        "instructor": "David Green",
+        "image":"https://medium.com/@DevChy/introduction-to-data-structures-with-real-world-examples-15063e4adbad"
+    },
+    {
+        "id": 7,
+        "title": "Machine Learning Basics",
+        "description": "An introduction to machine learning concepts and techniques.",
+        "instructor": "Emma Blue",
+        "image":"https://www.istockphoto.com/photos/machine-learning"
+    },
+    {
+        "id": 8,
+        "title": "Cloud Computing with AWS",
+        "description": "Understand the basics of cloud computing and AWS services.",
+        "instructor": "Frank Black",
+        "image":"https://www.summeroftech.co.nz/blog/introduction-to-cloud-computing-with-aws"
+    },
+    {
+        "id": 9,
+        "title": "Cybersecurity Essentials",
+        "description": "Learn the essentials of cybersecurity and how to protect systems.",
+        "instructor": "Grace Yellow",
+        "image":"https://www.shutterstock.com/search/cyber-security-essentials"
+    },
+    {
+        "id": 10,
+        "title": "  ",
+        "description": "Master the practices and tools used in DevOps.",
+        "instructor": "Henry Orange",
+        "image":"https://www.istockphoto.com/photos/devops-lifecycle"
+
+    },
+    {  
+        "id": 11,
+        "title":"Java Programming",
+        "description":"Learn the basics of Java programming and build applications.",
+        "instructor":"Jack Brown",
+        "image":"https://contentstatic.techgig.com/photo/90078705/myths-around-java-programming-language-you-shouldnt-believe.jpg?28608"
+
+    }
+]

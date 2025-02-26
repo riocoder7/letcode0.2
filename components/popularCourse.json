@@ -1,0 +1,126 @@
+ [
+        
+        {
+            "id": 2,
+            "name": "App Development - Basic",
+            "description": "Introduction to app development for both Android and iOS platforms.",
+            "category": "Development",
+            "startColor": "#33FF57",
+            "color": "#39C700"
+        },
+        {
+            "id": 3,
+            "name": "Data Science - Basic",
+            "description": "Fundamentals of data science including data analysis, visualization, and machine learning.",
+            "category": "Data",
+            "startColor": "#3357FF",
+            "color": "#0039C7"
+        },
+         {
+            "id": 6,
+            "name": "C - Basic",
+            "description": "Introduction to C programming language.",
+            "category": "Programming",
+            "startColor": "#A8B9CC",
+            "color": "#00599C"
+        },
+        {
+            "id": 1,
+            "name": "Web Development - Basic",
+            "description": "Learn the basics of web development including HTML, CSS, and JavaScript.",
+            "category": "Development",
+            "startColor": "#FF5733",
+            "color": "#C70039"
+        },
+        
+        {
+            "id": 4,
+            "name": "Python - Basic",
+            "description": "Introduction to Python programming language.",
+            "category": "Programming",
+            "startColor": "#306998",
+            "color": "#FFD43B"
+        },
+        {
+            "id": 5,
+            "name": "Java - Basic",
+            "description": "Introduction to Java programming language.",
+            "category": "Programming",
+            "startColor": "#5382A1",
+            "color": "#B07219"
+        },
+       
+        {
+            "id": 7,
+            "name": "C++ - Basic",
+            "description": "Introduction to C++ programming language.",
+            "category": "Programming",
+            "startColor": "#00599C",
+            "color": "#004482"
+        },
+        {
+            "id": 8,
+            "name": "PHP - Basic",
+            "description": "Introduction to PHP programming language.",
+            "category": "Programming",
+            "startColor": "#4F5B93",
+            "color": "#787CB5"
+        },
+        {
+            "id": 9,
+            "name": "Rust - Basic",
+            "description": "Introduction to Rust programming language.",
+            "category": "Programming",
+            "startColor": "#DEA584",
+            "color": "#000000"
+        },
+        {
+            "id": 10,
+            "name": "Git and GitHub - Basic",
+            "description": "Version control and collaboration using Git and GitHub.",
+            "category": "git",
+            "startColor": "#33FFF5",
+            "color": "#00C7C7"
+        },
+        {
+            "id": 11,
+            "name": "Web Development Frameworks - Advanced",
+            "description": "Introduction to popular web development frameworks.",
+            "category": "Development",
+            "startColor": "#FF8C33",
+            "color": "#C76B00"
+        },
+        {
+            "id": 12,
+            "name": "App Development Frameworks - Advanced",
+            "description": "Overview of frameworks used in app development.",
+            "category": "Development",
+            "startColor": "#8CFF33",
+            "color": "#6BC700"
+        },
+        {
+            "id": 13,
+            "name": "Cloud Computing - Basic",
+            "description": "Basics of cloud computing and popular cloud service providers.",
+            "category": "Cloud_Computing",
+            "startColor": "#33FF8C",
+            "color": "#00C76B"
+        },
+        {
+            "id": 14,
+            "name": "AWS - Basic",
+            "description": "Introduction to Amazon Web Services (AWS) and its core services.",
+            "category": "Cloud_Computing",
+            "startColor": "#FF9900",
+            "color": "#232F3E"
+        },
+        {
+            "id": 15,
+            "name": "Kubernetes - Basic",
+            "description": "Introduction to Kubernetes and container orchestration.",
+            "category": "Cloud_Computing",
+            "startColor": "#326CE5",
+            "color": "#000000"
+        }
+      
+    ]

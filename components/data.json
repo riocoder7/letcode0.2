@@ -1,0 +1,339 @@
+ [ 
+    {
+        "id": 1,
+        "name": "Web Development",
+        "startColor": "#FFCFCF",
+        "endColor": "#FEDADA",
+        "category": "Development",
+        "description": "Learn how to build and maintain websites.",
+        "sortName": "web development"
+    },
+    {
+        "id": 2,
+        "name": "App Development",
+        "startColor": "#AD9AF4",
+        "endColor": "#CDC0FD",
+        "category": "Development",
+        "description": "Learn how to develop mobile applications.",
+        "sortName": "app development"
+    },
+    {
+        "id": 3,
+        "name": "Java Programming",
+        "startColor": "#FFCFCF",
+        "endColor": "#FEDADA",
+        "category": "Programming",
+        "description": "Learn the basics and advanced concepts of Java programming.",
+        "sortName": "java programming"
+    },
+    {
+        "id": 4,
+        "name": "Python Programming",
+        "startColor": "#FF6699",
+        "endColor": "#FF99CC",
+        "category": "Programming",
+        "description": "Learn the basics and advanced concepts of Python programming.",
+        "sortName": "python programming"
+    },
+    {
+        "id": 5,
+        "name": "Data Science",
+        "startColor": "#6699FF",
+        "endColor": "#99CCFF",
+        "category": "Data",
+        "description": "Learn how to analyze and interpret complex data.",
+        "sortName": "data science"
+    },
+    {
+        "id": 6,
+        "name": "Machine Learning",
+        "startColor": "#99FF66",
+        "endColor": "#CCFF99",
+        "category": "Data",
+        "description": "Learn how to create algorithms that can learn from and make predictions on data.",
+        "sortName": "machine learning"
+    },
+    {
+        "id": 7,
+        "name": "Cyber Security",
+        "startColor": "#FF6633",
+        "endColor": "#FF9966",
+        "category": "Security",
+        "description": "Learn how to protect systems, networks, and programs from digital attacks.",
+        "sortName": "cyber security"
+    },
+    {
+        "id": 8,
+        "name": "Cloud Computing",
+        "startColor": "#66FF99",
+        "endColor": "#99FFCC",
+        "category": "Computing",
+        "description": "Learn how to deliver computing services over the cloud.",
+        "type": "Basic",
+        "sortName": "cloud computing"
+    },
+    {
+        "id": 9,
+        "name": "Artificial Intelligence",
+        "startColor": "#CC66FF",
+        "endColor": "#FF99FF",
+        "category": "Data",
+        "description": "Learn how to create intelligent agents and systems.",
+        "sortName": "artificial intelligence"
+    },
+    {
+        "id": 10,
+        "name": "Blockchain",
+        "startColor": "#66FF66",
+        "endColor": "#99FF99",
+        "category": "Technology",
+        "description": "Learn the fundamentals of blockchain technology and its applications.",
+        "sortName": "blockchain"
+    },
+    {
+        "id": 11,
+        "name": "DevOps",
+        "startColor": "#CC6699",
+        "endColor": "#FF99CC",
+        "category": "Development",
+        "description": "Learn how to combine software development and IT operations.",
+        "sortName": "devops"
+    },
+    {
+        "id": 12,
+        "name": "Big Data",
+        "startColor": "#6699CC",
+        "endColor": "#99CCFF",
+        "category": "Data",
+        "description": "Learn how to handle and analyze large volumes of data.",
+        "sortName": "big data"
+    },
+    {
+        "id": 13,
+        "name": "Internet of Things",
+        "startColor": "#66CC66",
+        "endColor": "#99FF66",
+        "category": "Technology",
+        "description": "Learn how to connect and exchange data between devices over the internet.",
+        "sortName": "internet of things"
+    },
+    {
+        "id": 14,
+        "name": "Quantum Computing",
+        "startColor": "#6633FF",
+        "endColor": "#9966FF",
+        "category": "Computing",
+        "description": "Learn the principles of quantum computing and its potential applications.",
+        "sortName": "quantum computing"
+    },
+    {
+        "id": 15,
+        "name": "Augmented Reality",
+        "startColor": "#CC6699",
+        "endColor": "#FF99CC",
+        "category": "Technology",
+        "description": "Learn how to create augmented reality experiences.",
+        "sortName": "augmented reality"
+    },
+    {
+        "id": 16,
+        "name": "Virtual Reality",
+        "startColor": "#CC66FF",
+        "endColor": "#FF99FF",
+        "category": "Technology",
+        "description": "Learn how to create virtual reality experiences.",
+        "sortName": "virtual reality"
+    },
+    {
+        "id": 17,
+        "name": "Edge Computing",
+        "startColor": "#66CC66",
+        "endColor": "#99FF99",
+        "category": "Computing",
+        "description": "Learn how to process data closer to the source of data generation.",
+        "sortName": "edge computing"
+    },
+    {
+        "id": 18,
+        "name": "Robotics",
+        "startColor": "#6699CC",
+        "endColor": "#99CCFF",
+        "category": "Technology",
+        "description": "Learn how to design, build, and operate robots.",
+        "sortName": "robotics"
+    },
+    {
+        "id": 19,
+        "name": "Git Basics",
+        "startColor": "#F0E68C",
+        "endColor": "#FFFACD",
+        "category": "git",
+        "description": "Learn the basics of Git version control system.",
+        "sortName": "git basics"
+    },
+    {
+        "id": 20,
+        "name": "GitHub Essentials",
+        "startColor": "#FFD700",
+        "endColor": "#FFEC8B",
+        "category": "git",
+        "description": "Learn how to use GitHub for version control and collaboration.",
+        "sortName": "github essentials"
+    },
+    {
+        "id": 21,
+        "name": "Advanced Git",
+        "startColor": "#FFA07A",
+        "endColor": "#FFB6C1",
+        "category": "git",
+        "description": "Learn advanced Git techniques and workflows.",
+        "sortName": "advanced git"
+    },
+    {
+        "id": 22,
+        "name": "Collaborating with GitHub",
+        "startColor": "#20B2AA",
+        "endColor": "#66CDAA",
+        "category": "git",
+        "description": "Learn how to collaborate with others using GitHub.",
+        "sortName": "collaborating with github"
+    },
+    {
+        "id": 23,
+        "name": "C++ Programming - Beginner",
+        "startColor": "#FF6347",
+        "endColor": "#FF7F50",
+        "category": "Programming",
+        "description": "Learn the basics of C++ programming.",
+        "sortName": "c++ programming - beginner"
+    },
+    {
+        "id": 24,
+        "name": "C++ Programming - Advanced",
+        "startColor": "#FF4500",
+        "endColor": "#FF6347",
+        "category": "Programming",
+        "description": "Learn advanced concepts of C++ programming.",
+        "sortName": "c++ programming - advanced"
+    },
+    {
+        "id": 25,
+        "name": "JavaScript Programming - Beginner",
+        "startColor": "#FFD700",
+        "endColor": "#FFEC8B",
+        "category": "Programming",
+        "description": "Learn the basics of JavaScript programming.",
+        "sortName": "javascript programming - beginner"
+    },
+    {
+        "id": 26,
+        "name": "JavaScript Programming - Advanced",
+        "startColor": "#FFA500",
+        "endColor": "#FF8C00",
+        "category": "Programming",
+        "description": "Learn advanced concepts of JavaScript programming.",
+        "sortName": "javascript programming - advanced"
+    },
+    {
+        "id": 27,
+        "name": "Ruby Programming - Beginner",
+        "startColor": "#DC143C",
+        "endColor": "#FF6347",
+        "category": "Programming",
+        "description": "Learn the basics of Ruby programming.",
+        "sortName": "ruby programming - beginner"
+    },
+    {
+        "id": 28,
+        "name": "Ruby Programming - Advanced",
+        "startColor": "#B22222",
+        "endColor": "#DC143C",
+        "category": "Programming",
+        "description": "Learn advanced concepts of Ruby programming.",
+        "sortName": "ruby programming - advanced"
+    },
+    {
+        "id": 29,
+        "name": "React Framework",
+        "startColor": "#61DAFB",
+        "endColor": "#21A1F1",
+        "category": "Framework",
+        "description": "Learn how to build user interfaces using React.",
+        "sortName": "react framework"
+    },
+    {
+        "id": 30,
+        "name": "React Native Framework",
+        "startColor": "#61DAFB",
+        "endColor": "#21A1F1",
+        "category": "Framework",
+        "description": "Learn how to build user interfaces using React.",
+        "sortName": "react native framework"
+    },
+    {
+        "id": 31,
+        "name": "Next.js Framework",
+        "startColor": "#000000",
+        "endColor": "#FFFFFF",
+        "category": "Framework",
+        "description": "Learn how to build server-side rendered applications using Next.js.",
+        "sortName": "next.js framework"
+    },
+    {
+        "id": 32,
+        "name": "Angular Framework",
+        "startColor": "#DD0031",
+        "endColor": "#C3002F",
+        "category": "Framework",
+        "description": "Learn how to build web applications using Angular.",
+        "sortName": "angular framework"
+    },
+    {
+        "id": 33,
+        "name": "Vue.js Framework",
+        "startColor": "#42B883",
+        "endColor": "#35495E",
+        "category": "Framework",
+        "description": "Learn how to build user interfaces using Vue.js.",
+        "sortName": "vue.js framework"
+    },
+    {
+        "id": 34,
+        "name": "Svelte Framework",
+        "startColor": "#FF3E00",
+        "endColor": "#FF6F00",
+        "category": "Framework",
+        "description": "Learn how to build web applications using Svelte.",
+        "sortName": "svelte framework"
+    },
+    {
+        "id": 35,
+        "name": "Cloud Computing - Advanced",
+        "startColor": "#66FF99",
+        "endColor": "#99FFCC",
+        "category": "Cloud",
+        "description": "Learn advanced concepts of delivering computing services over the cloud.",
+        "type": "Advanced",
+        "sortName": "cloud computing - advanced"
+    },
+    {
+        "id": 36,
+        "name": "AWS - Advanced",
+        "startColor": "#FF9900",
+        "endColor": "#FFCC00",
+        "category": "Cloud",
+        "description": "Learn advanced concepts of AWS cloud services.",
+        "type": "Advanced",
+        "sortName": "aws - advanced"
+    },
+    {
+        "id": 37,
+        "name": "Kubernetes - Advanced",
+        "startColor": "#326CE5",
+        "endColor": "#5A9BD5",
+        "category": "Cloud",
+        "description": "Learn advanced concepts of Kubernetes container orchestration.",
+        "type": "Advanced",
+        "sortName": "kubernetes - advanced"
+    }
+]
