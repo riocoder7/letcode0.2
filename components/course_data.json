@@ -268,7 +268,7 @@
   
       },
 
-      {
+ {
         "id": 4,
         "title": "App Development",
         "lessons": [
@@ -329,5 +329,46 @@
             "example": "class Welcome extends React.Component {\n  render() {\n    return <h1>Hello, World!</h1>;\n  }\n}" 
           }
         ]
-      }
+  },
+   
+     
+{
+  "id": 5,
+  "title": "Java Programming",
+  "lessons": [
+    {
+      "id": 1,
+      "title": "Introduction to Java",
+      "content": "Java is a high-level, class-based, object-oriented programming language that is designed to have as few implementation dependencies as possible.",
+      "subTopics": [
+        {
+          "title": "What is Java?",
+          "content": "Java is a versatile and powerful programming language used for developing a wide range of applications, from mobile apps to large-scale enterprise systems."
+        },
+        {
+          "title": "Why use Java?",
+          "content": "Platform Independence ➡️ Write once, run anywhere.\n\nObject-Oriented ➡️ Promotes modular and reusable code.\n\nRobust ➡️ Strong memory management and exception handling.\n\nSecure ➡️ Provides a secure environment for code execution.\n\nCommunity Support ➡️ Large community and extensive libraries."
+        },
+        {
+          "title": "Java Syntax",
+          "content": "Java syntax is similar to C++ but with fewer low-level facilities. It uses classes and objects to structure code.",
+          "code_output": [
+            {
+              "code": [
+                "public class HelloWorld {",
+                "  public static void main(String[] args) {",
+                "    System.out.println(\"Hello, World!\");",
+                "  }",
+                "}"
+              ],
+              "fileName": "HelloWorld.java",
+              "language": "Java"
+            }
+          ]
+        }
+      ],
+      "example": "public class HelloWorld {\n  public static void main(String[] args) {\n    System.out.println(\"Hello, World!\");\n  }\n}"
+    }
+  ]
+}
 ]

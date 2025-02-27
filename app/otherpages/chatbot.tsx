@@ -30,7 +30,7 @@ const Chatbot: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const flatListRef = useRef<FlatList<Message>>(null);
 
-  const GEMINI_API_KEY = "AIzaSyCzmD-A9D3f0Mv0XokW8nP0ui7L0rPxG3A";
+  const GEMINI_API_KEY = Constants.expoConfig?.extra?.GEMINI_API_KEY || 'AIzaSyByweqMe8GlV6phTmKSmH5pS-RP33QDr-c';
   const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`;
 
   const sendMessage = async () => {
