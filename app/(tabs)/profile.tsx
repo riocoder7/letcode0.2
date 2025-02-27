@@ -63,7 +63,7 @@ export default function SignOutScreen() {
           <Text style={styles.menuItemText}>Compiler</Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity  >
+      <TouchableOpacity onPress={()=>router.replace('/otherpages/chatbot')} >
         <View style={styles.menuItem}>
         <Octicons name="dependabot" size={24} color="black" />
           <Text style={styles.menuItemText}>Ai</Text>

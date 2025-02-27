@@ -6,10 +6,6 @@ import SyntaxHighlighter from 'react-native-syntax-highlighter';
 // @ts-ignore
 import { monokai } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
-
-
-
-
 interface Output {
   fileName: string;
   language: string;
