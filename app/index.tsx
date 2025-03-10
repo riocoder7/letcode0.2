@@ -25,7 +25,7 @@ export default function Index() {
       } else {
         // If no user, wait 3 seconds and then navigate to Onboarding
         const timer = setTimeout(() => {
-          router.replace('/(tabs)/Home');
+          router.replace('/getstart');
         }, 3000);
         return () => clearTimeout(timer);
       }

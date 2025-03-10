@@ -53,9 +53,10 @@ export default function TabLayout() {
             tabBarLabel: 'Progress'
         }}/>
         <Tabs.Screen name='Profile' options={{
-            headerTitle: ()=>(
-                <Text style={{fontFamily:'outfit-bold' ,fontSize:26,color:Colors.primary}}>Profile</Text>
-            ),
+            headerShown: false,
+            // headerTitle: ()=>(
+            //     <Text style={{fontFamily:'outfit-bold' ,fontSize:26,color:Colors.primary}}>Profile</Text>
+            // ),
             tabBarIcon: ({color,size})=> <Ionicons name="person-circle-outline" size={size} color={color} />,
             tabBarLabel: 'Profile'
         }}/>

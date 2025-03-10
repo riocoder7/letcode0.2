@@ -19,7 +19,7 @@ const Home = () => {
   const isDarkMode = theme === 'dark';
   const [selected, setSelected] = useState('all');
   const [selectedCourse, setSelectedCourse] = useState<string>();
-  Alert.alert(userDetail.name);
+  
 
  
 
@@ -154,7 +154,7 @@ const Home = () => {
         {/* main View  */}
         <View style={{ flex: 1, }}>
           <View style={styles.header}>
-            <TouchableOpacity onPress={() => router.push('/profile')}>
+            <TouchableOpacity onPress={() => router.push('/(tabs)/Profile')}>
               <View style={styles.profileSection}>
                 <Image
                   source={{

@@ -144,7 +144,7 @@ const Signup = () => {
             <TouchableOpacity
                 style={[styles.button, { backgroundColor: theme === 'dark' ? '#007bff' : '#007bff' }]}
                 onPress={createAccount}
-                
+                disabled={loading}
             >
                 {loading ? (
                     <ActivityIndicator size="small" color="#fff" />

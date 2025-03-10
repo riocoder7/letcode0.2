@@ -1,156 +1,306 @@
-
-import React, { useContext } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import Octicons from '@expo/vector-icons/Octicons';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import React, { useContext, useEffect, useState } from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  ActivityIndicator,
+  ScrollView,
+} from 'react-native';
+import { Ionicons, MaterialIcons, MaterialCommunityIcons, Octicons, FontAwesome5 } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
+import { auth } from '@/config/firebaseConfig';
 import { UserDetailContext } from '@/config/UserDetailContext';
 import { useRouter } from 'expo-router';
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
 
-export default function SignOutScreen() {
+
+interface UserData {
+  name: string;
+  email: string;
+  profileImage?: string;
+}
+
+const db = getFirestore();
+
+
+
+export default function ProfileScreen() {
   const router = useRouter();
-  const { userDetail, setUserDetail } = useContext(UserDetailContext);
-   
+  const { userDetail } = useContext(UserDetailContext);
+  const [userData, setUserData] = useState<UserData>({ name: '', email: '', profileImage: '' });
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const user = auth.currentUser;
+        if (user?.email) {
+          const db = getFirestore();
+          const userDoc = await getDoc(doc(db, 'users', user.email));
+          if (userDoc.exists()) {
+            setUserData(userDoc.data() as UserData);
+          } else {
+            console.log('No such user data found!');
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchUserData();
+  }, []);
 
-  
+  const handleSignOut = async () => {
+    try {
+      await auth.signOut();
+      router.replace('/(auth)/sinein');
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  };
 
   return (
-    <View style={styles.container}>
-    {/* Profile Header */}
-    <View style={styles.header}>
-      <Image
-        source={{ uri: 'https://via.placeholder.com/50' }}
-        style={styles.image}
-      />
-      <View>
-        <Text style={styles.name}>{userDetail.name}</Text>
-        <Text style={styles.lastLogin}>{userDetail.email}</Text>
-        {/* <Text style={styles.lastLogin}>Last Login: April 12, 2023</Text> */}
-      </View>
-    </View>
+    <LinearGradient colors={['rgb(164, 148, 255)', 'rgb(242, 239, 255)']} style={styles.container}>
+      <LinearGradient colors={['#5F48EA', '#7B5FFF']} style={styles.topBar}>
+        <View style={styles.profileRow}>
+          {userData.profileImage ? (
+            <Image source={{ uri: userData.profileImage }} style={styles.profileImage} />
+          ) : (
+            <View
+              style={[
+                styles.imagePlaceholder,
+                { backgroundColor: getRandomColor(userData.name) },
+              ]}
+            >
+              <Text style={styles.imageText}>
+                {userData.name ? userData.name.charAt(0).toUpperCase() : '?'}
+              </Text>
+            </View>
+          )}
+          <View style={styles.profileInfo}>
+            {loading ? (
+              <ActivityIndicator size="small" color="#7B5FFF" />
+            ) : (
+              <>
+                <Text style={styles.userName}>{userData.name}</Text>
+                <Text style={styles.userEmail}>{userData.email}</Text>
+              </>
+            )}
+          </View>
+        </View>
+      </LinearGradient>
 
-    {/* Menu List */}
-    <View style={styles.menu}>
-      <TouchableOpacity >
-        <View style={styles.menuItem}>
-          <Ionicons name="person-outline" size={24} color="black" />
-          <Text style={styles.menuItemText}>Profile Details</Text>
-        </View>
-      </TouchableOpacity  >
-      <TouchableOpacity  >
-        <View style={styles.menuItem}>
-        <MaterialCommunityIcons name="progress-check" size={24} color="black" />
-          <Text style={styles.menuItemText}>Progress</Text>
-        </View>
-      </TouchableOpacity  >
-      <TouchableOpacity >
-        <View style={styles.menuItem}>
-        <MaterialIcons name="travel-explore" size={24} color="black" />
-          <Text style={styles.menuItemText}>Explore</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity >
-        <View style={styles.menuItem}>
-        <MaterialIcons name="quiz" size={24} color="black" />
-          <Text style={styles.menuItemText}>Quiz</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity >
-        <View style={styles.menuItem}>
-        <FontAwesome5 name="laptop-code" size={24} color="black" />
-          <Text style={styles.menuItemText}>Compiler</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={()=>router.replace('/otherpages/chatbot')} >
-        <View style={styles.menuItem}>
-        <Octicons name="dependabot" size={24} color="black" />
-          <Text style={styles.menuItemText}>Ai</Text>
-        </View>
-      </TouchableOpacity>
-
-      {/* sineout btn  */}
-      <TouchableOpacity >
-      <View style={styles.sineoutBtn} >
+      <ScrollView contentContainerStyle={{ paddingBottom: 20 }}>
+        <MenuItem 
+          icon={<Ionicons name="bookmarks-outline" size={26} color="#5F48EA" />}
+          title="Enrolled Courses"
+          subtitle="Explore your all enrolled courses" onPress={function (): void {
+            throw new Error('Function not implemented.');
+          } }         
+        />
+        <MenuItem 
+          icon={<MaterialCommunityIcons name="progress-check" size={26} color="#5F48EA" />} 
+          title="Course Progress" 
+          subtitle="See your real-time Course Progress" 
+          onPress={function (): void {
+            throw new Error('Function not implemented.');
+          } }
+        />
+        <MenuItem 
+          icon={<Octicons name="dependabot" size={26} color="#5F48EA" />} 
+          title="Chat with AI" 
+          subtitle="Solve your doubts instantly with AI-powered assistance." 
+          onPress={function (): void {
+            throw new Error('Function not implemented.');
+          } }
+        />
+        <MenuItem 
+          icon={<FontAwesome5 name="laptop-code" size={26} color="#5F48EA" />} 
+          title="Compiler" 
+          subtitle="Write, compile, and run your code in multiple programming languages." 
+          onPress={function (): void {
+            throw new Error('Function not implemented.');
+          } }
+        />
+        <MenuItem 
+          icon={<MaterialIcons name="quiz" size={28} color="#5F48EA" />} 
+          title="Quiz Challenge" 
+          subtitle="Test your knowledge with fun and interactive quizzes." 
+          onPress={function (): void {
+            throw new Error('Function not implemented.');
+          } }
+        />
+        <MenuItem 
+          icon={<Ionicons name="notifications-outline" size={26} color="#5F48EA" />} 
+          title="Notifications" 
+          subtitle="Explore the important notifications" 
+          onPress={function (): void {
+            throw new Error('Function not implemented.');
+          } }
+        />
+         <MenuItem 
+          icon={<MaterialIcons name="developer-mode" size={24} color="black" />} 
+          title="Developer Profile" 
+          subtitle="View detailed information about the developer" 
+          onPress={async () => {
+            
+            router.push('/screen/devloper');
+          }} 
+        />
+        <TouchableOpacity 
+          style={styles.signOutBtn} 
+          onPress={handleSignOut}
+        >
           <Ionicons name="power" size={24} color="red" />
-          <Text style={[styles.menuItemText,{textAlign:"center", color:"red"}]}>Logout</Text>
+          <Text style={styles.signOutText}>Logout</Text>
+        </TouchableOpacity>
+
+        <View style={styles.versionContainer}>
+          <Text style={styles.versionText}>App Version: 0.2.0</Text>
         </View>
-      </TouchableOpacity>
-    </View>
-    
-    {/* Footer */}
-    <Text style={styles.footer}>Version 1.0</Text>
-  </View>
+      </ScrollView>
+    </LinearGradient>
   );
+}
+
+interface MenuItemProps {
+  icon: JSX.Element;
+  title: string;
+  subtitle: string;
+  onPress: () => void;
+}
+
+function MenuItem({ icon, title, subtitle, onPress }: MenuItemProps) {
+  return (
+    <TouchableOpacity style={styles.menuItem} onPress={onPress}>
+      <View style={styles.menuLeft}>
+        {icon}
+        <View style={styles.menuTextContainer}>
+          <Text style={styles.menuTitle}>{title}</Text>
+          <Text style={styles.menuSubtitle}>{subtitle}</Text>
+        </View>
+      </View>
+      <Ionicons name="chevron-forward" size={20} color="#CFCFCF" />
+    </TouchableOpacity>
+  );
+}
+
+function getRandomColor(name: string) {
+  const colors = ['#FF5733', '#33A1FF', '#FF33A1', '#33FF57', '#A133FF', '#FFA133'];
+  if (!name) return '#7B5FFF';
+  return colors[name.charCodeAt(0) % colors.length] || '#7B5FFF';
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
-    paddingHorizontal: 16,
-    paddingTop: 24,
+    backgroundColor: '#F9FAFB',
   },
-  header: {
-    backgroundColor: '#2E4EA7',
-    height:110,
-    borderRadius: 12,
-    padding: 16,
+  topBar: {
+    
+    justifyContent: 'center',
+    padding: 20,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+  },
+  profileRow: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginHorizontal: 20,
   },
-  image: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+  profileImage: {
+    width: 65,
+    height: 65,
+    borderRadius: 30,
     marginRight: 16,
-    backgroundColor:"#fff"
+    backgroundColor: '#fff',
   },
-  name: {
+  imagePlaceholder: {
+    width: 65,
+    height: 65,
+    borderRadius: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 10,
+  },
+  imageText: {
+    fontSize: 34,
+    fontFamily: 'outfit-bold',
     color: 'white',
-    fontWeight: 'bold',
+  },
+  profileInfo: {
+    justifyContent: 'center',
+  },
+  userName: {
+    marginRight:10,
+    // paddingLeft:5,
+    // width:"90%",
+    fontSize: 24,
+    fontFamily: 'outfit-bold',
+    color: 'white',
+  },
+  userEmail: {
+    marginRight:10,
+    // width:"90%",
+    // maxWidth:'90%',
     fontSize: 18,
-  },
-  lastLogin: {
+    fontFamily: 'outfit',
     color: 'white',
-    fontSize: 12,
-  },
-  menu: {
-    marginTop: 10,
   },
   menuItem: {
-    marginTop:15,
+    flexDirection: 'row',
+    marginTop: 15,
+    marginHorizontal: 20,
+    backgroundColor: 'rgba(255, 255, 255, 0.80)',
+    borderRadius: 12,
+    padding: 15,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  menuLeft: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#e0e0e0',
-    borderRadius:15
   },
-  menuItemText: {
+  menuTextContainer: {
     marginLeft: 16,
+  },
+  menuTitle: {
     fontSize: 16,
-    color: 'black',
+    fontWeight: '600',
+    color: '#333',
   },
-  sineoutBtn:{
-    flexDirection:"row", 
-    justifyContent:"center", 
-    alignItems:"center",  
-    marginTop:40, 
-    borderRadius:12, 
-    borderWidth:1, 
-    padding:10, 
+  menuSubtitle: {
+    fontSize: 12,
+    color: '#777',
+  },
+  signOutBtn: {
+    flexDirection: 'row',
+    marginHorizontal: 20,
+    marginTop: 30,
+    borderRadius: 12,
+    borderWidth: 1,
     borderColor: '#e0e0e0',
-
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
   },
-  footer: {
-    color: 'gray',
-    textAlign: 'center',
-    marginTop: 25,
-    fontSize:16
+  signOutText: {
+    marginLeft: 10,
+    fontSize: 16,
+    color: 'red',
+    fontFamily: 'outfit-bold',
   },
-
+  versionContainer: {
+    marginTop: 20,
+    alignItems: 'center',
+  },
+  versionText: {
+    fontSize: 14,
+    color: '#777',
+  },
 });
