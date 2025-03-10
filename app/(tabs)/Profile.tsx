@@ -6,12 +6,12 @@ import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Octicons from '@expo/vector-icons/Octicons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-
+import { UserDetailContext } from '@/config/UserDetailContext';
 import { useRouter } from 'expo-router';
 
 export default function SignOutScreen() {
   const router = useRouter();
-  
+  const { userDetail, setUserDetail } = useContext(UserDetailContext);
    
 
 
@@ -26,8 +26,9 @@ export default function SignOutScreen() {
         style={styles.image}
       />
       <View>
-        <Text style={styles.name}>Rio</Text>
-        <Text style={styles.lastLogin}>Last Login: April 12, 2023</Text>
+        <Text style={styles.name}>{userDetail.name}</Text>
+        <Text style={styles.lastLogin}>{userDetail.email}</Text>
+        {/* <Text style={styles.lastLogin}>Last Login: April 12, 2023</Text> */}
       </View>
     </View>
 

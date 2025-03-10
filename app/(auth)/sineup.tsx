@@ -1,6 +1,4 @@
 import React, { useContext, useState } from 'react';
-
-
 import {
     StyleSheet,
     Text,
@@ -11,10 +9,14 @@ import {
     ToastAndroid,
     ActivityIndicator,
 } from 'react-native';
-// import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { useColorScheme } from 'react-native';
 import { useRouter } from 'expo-router';
-;
+import { createUserWithEmailAndPassword, User } from 'firebase/auth';
+import { auth, db } from '@/config/firebaseConfig';
+import { doc, setDoc } from 'firebase/firestore';
+import { UserDetailContext } from '@/config/UserDetailContext';
+
 
 const Signup = () => {
 
@@ -27,67 +29,70 @@ const Signup = () => {
     const [password, setPassword] = useState('');
     const [secureText, setSecureText] = useState(true);
     const [errors, setErrors] = useState({ name: '', email: '', password: '' });
+    const { userDetail, setUserDetail } = useContext(UserDetailContext);
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     // Handle Sign-Up
-    const createAccount = async () => {
-        let isValid = true;
-        let newErrors = { name: '', email: '', password: '' };
-        const validation= ()=>{
-
+ const createAccount = async () => {
+    const validationForm = () => {
+        let newErrors = { name: '', email: '', password: '', usernotfound:''};
         if (!name.trim()) {
             newErrors.name = 'Name is required';
-            isValid = false;
         }
     
         if (!email.trim()) {
             newErrors.email = 'Email is required';
-            isValid = false;
         } else if (!emailRegex.test(email)) {
             newErrors.email = 'Please enter a valid email';
-            isValid = false;
         }
     
         if (!password.trim()) {
             newErrors.password = 'Password is required';
-            isValid = false;
         } else if (password.length < 6) {
             newErrors.password = 'Password must be at least 6 characters';
-            isValid = false;
         }
     
         setErrors(newErrors);
-        }
+        return !newErrors.name && !newErrors.email && !newErrors.password;
+    }
+    if (!validationForm()) return;
     
-        if (!isValid) return;
-    
-        setLoading(true);
-        
-        try {
-         
-    
-        
-            router.replace('/(auth)/sinein');
-        } catch (error) {
-            console.error("Error signing up:", (error as any).message);
-            setLoading(false);
-        }
-        
-
+    setLoading(true);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(async (resp) => {
+        const user = resp.user;
+        // console.log(user);
+        await SaveUser(user);
+        setLoading(false);
+        router.replace('/(tabs)/Home');
+      })
+      .catch(e => {
+        console.log(e.message);
+        setLoading(false);
+        // ToastAndroid.show('Incorrect Email & Password', ToastAndroid.BOTTOM);
+      });
 
     };
-    
- 
-    
-
+   
+ const SaveUser = async (user: User) => {
+        const data = {
+          name: name,
+          email: email,
+          password: password,
+          uid: user?.uid
+        };
+        await setDoc(doc(db, 'users', email), data);
+        // console.log(data)
+        setUserDetail(data);
+};    
     return (
         <View style={[styles.container, { backgroundColor: theme === 'dark' ? '#121212' : '#fff' }]}>
             <Text style={[styles.title, { color: theme === 'dark' ? '#fff' : '#333' }]}>Sign up</Text>
 
             {/* Name Input */}
             <View style={[styles.inputWrapper, { borderColor: theme === 'dark' ? '#444' : '#ccc' }]}>
-                {/* <Icon name="user" size={20} color={theme === 'dark' ? '#fff' : '#555'} style={styles.leftIcon} /> */}
+                <Icon name="user" size={20} color={theme === 'dark' ? '#fff' : '#555'} style={styles.leftIcon} />
                 <TextInput
                     style={[styles.input, { color: theme === 'dark' ? '#fff' : '#333' }]}
                     placeholder="Name"
@@ -100,7 +105,7 @@ const Signup = () => {
 
             {/* Email Input */}
             <View style={[styles.inputWrapper, { borderColor: theme === 'dark' ? '#444' : '#ccc' }]}>
-                {/* <Icon name="envelope" size={20} color={theme === 'dark' ? '#fff' : '#555'} style={styles.leftIcon} /> */}
+                <Icon name="envelope" size={20} color={theme === 'dark' ? '#fff' : '#555'} style={styles.leftIcon} />
                 <TextInput
                     style={[styles.input, { color: theme === 'dark' ? '#fff' : '#333' }]}
                     placeholder="Email"
@@ -115,7 +120,7 @@ const Signup = () => {
 
             {/* Password Input */}
             <View style={[styles.inputWrapper, { borderColor: theme === 'dark' ? '#444' : '#ccc' }]}>
-                {/* <Icon name="lock" size={20} color={theme === 'dark' ? '#fff' : '#555'} style={styles.leftIcon} /> */}
+                <Icon name="lock" size={20} color={theme === 'dark' ? '#fff' : '#555'} style={styles.leftIcon} />
                 <TextInput
                     style={[styles.input, { color: theme === 'dark' ? '#fff' : '#333' }]}
                     placeholder="Password"
@@ -125,12 +130,12 @@ const Signup = () => {
                     onChangeText={setPassword}
                 />
                 <TouchableOpacity onPress={() => setSecureText(!secureText)}>
-                    {/* <Icon
+                    <Icon
                         name={secureText ? 'eye-slash' : 'eye'}
                         size={20}
                         color={theme === 'dark' ? '#fff' : '#555'}
                         style={styles.eyeIcon}
-                    /> */}
+                    />
                 </TouchableOpacity>
             </View>
             {errors.password ? <Text style={styles.errorText}>{errors.password}</Text> : null}
@@ -139,7 +144,7 @@ const Signup = () => {
             <TouchableOpacity
                 style={[styles.button, { backgroundColor: theme === 'dark' ? '#007bff' : '#007bff' }]}
                 onPress={createAccount}
-                disabled={loading}
+                
             >
                 {loading ? (
                     <ActivityIndicator size="small" color="#fff" />
@@ -165,7 +170,7 @@ const Signup = () => {
 
             {/* Google Sign-Up Button */}
             <TouchableOpacity style={[styles.googleButton, { borderColor: theme === 'dark' ? '#444' : '#ccc' }]}>
-                {/* <Icon name="google" size={20} color={theme === 'dark' ? '#fff' : '#333'} /> */}
+                <Icon name="google" size={20} color={theme === 'dark' ? '#fff' : '#333'} />
                 <Text style={[styles.googleButtonText, { color: theme === 'dark' ? '#fff' : '#333' }]}>Sign up with Google</Text>
             </TouchableOpacity>
         </View>
@@ -254,3 +259,5 @@ const styles = StyleSheet.create({
         marginLeft: 10,
     },
 });
+
+

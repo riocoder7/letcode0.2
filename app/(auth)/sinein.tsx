@@ -1,6 +1,10 @@
 
+import { auth, db } from '@/config/firebaseConfig';
 import { useRouter } from 'expo-router';
-import { useState } from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
+import { useContext, useState } from 'react';
+import { UserDetailContext } from '@/config/UserDetailContext';
 import {
   StyleSheet,
   Text,
@@ -23,43 +27,60 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [secureText, setSecureText] = useState(true);
-
-  const [errors, setErrors] = useState({ email: '', password: '' });
+const { userDetail, setUserDetail } = useContext(UserDetailContext);
+  const [errors, setErrors] = useState({ email: '', password: '',usernotfound:'' });
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const formValidate=()=>{
+
+  }
 
   // Handle login validation & authentication
   const handleLogin = async () => {
-    let newErrors = { email: '', password: '' };
+    let newErrors = { email: '', password: '',usernotfound:'' };
     let isValid = true;
+    const formValidate= ()=>{
 
-    if (!email.trim()) {
-      newErrors.email = 'Email is required';
-      isValid = false;
-    } else if (!emailRegex.test(email)) {
-      newErrors.email = 'Please enter a valid email';
-      isValid = false;
+      if (!email.trim()) {
+        newErrors.email = 'Email is required';
+        isValid = false;
+      } else if (!emailRegex.test(email)) {
+        newErrors.email = 'Please enter a valid email';
+        isValid = false;
+      }
+  
+      if (!password.trim()) {
+        newErrors.password = 'Password is required';
+        isValid = false;
+      } else if (password.length < 6) {
+        newErrors.password = 'Password must be at least 6 characters';
+        isValid = false;
+      }
+  
+       setErrors(newErrors);
     }
-
-    if (!password.trim()) {
-      newErrors.password = 'Password is required';
-      isValid = false;
-    } else if (password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters';
-      isValid = false;
-    }
-
-    setErrors(newErrors);
+   formValidate()
 
     if (!isValid) return;
     setLoading(true)
-    try {
-       router.replace('/(tabs)/Home');
-     
-    } catch (error) {
-      console.error("Error logging in:", (error as any).message);
-      setLoading(false)
-    }
+    signInWithEmailAndPassword(auth, email, password)
+      .then(async (resp) => {
+        console.log(resp.user);
+        await getUserDetails();
+        setLoading(false);
+        router.replace('/(tabs)/Home');
+      })
+      .catch(e => {
+        console.log(e);
+        setLoading(false);
+        newErrors.usernotfound='User not found. Please check your email and password.'
+        // ToastAndroid.show('Incorrect Email or Password', ToastAndroid.BOTTOM);
+      });
+  };
+
+  const getUserDetails = async () => {
+    const result = await getDoc(doc(db, 'users', email));
+    setUserDetail(result.data());
   };
 
   return (
@@ -115,6 +136,8 @@ const Login = () => {
         <Text style={[styles.forgotPassword, theme === 'dark' && styles.forgotPasswordDark]}>Forgot Password?</Text>
       </TouchableOpacity>
 
+      {errors.usernotfound ? <Text style={styles.errorText}>{errors.usernotfound}</Text> : null}
+       
       {/* Login Button */}
       <TouchableOpacity style={[styles.button, theme === 'dark' && styles.buttonDark]} onPress={handleLogin}>
         
@@ -283,3 +306,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
+
+function getUserDetails() {
+  throw new Error('Function not implemented.');
+}
+

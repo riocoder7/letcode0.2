@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, useColorScheme, FlatList } from 'react-native';
+import React, { useContext, useRef, useState } from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity, useColorScheme, FlatList, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Data from '@/components/data.json';
 import Popular_course from '@/components/popular_course';
@@ -9,15 +9,17 @@ import { Modalize } from 'react-native-modalize';
 import Enroll from '@/components/enroll';
 import Enrollments from '@/components/enrollments.json'
 import { Link, useRouter} from 'expo-router';
+import { UserDetailContext } from '@/config/UserDetailContext';
 const Home = () => {
   const router = useRouter();
 
-  
+  const { userDetail, setUserDetail } = useContext(UserDetailContext);
   const modalizeRefFilter = useRef<Modalize>(null);
   const theme = useColorScheme();
   const isDarkMode = theme === 'dark';
   const [selected, setSelected] = useState('all');
   const [selectedCourse, setSelectedCourse] = useState<string>();
+  Alert.alert(userDetail.name);
 
  
 
@@ -161,7 +163,7 @@ const Home = () => {
                   style={styles.profileImage}
                 />
                 <View style={styles.userDetails}>
-                  <Text style={styles.userName}>Alan Williams</Text>
+                  <Text style={styles.userName}>Dear, {userDetail.name}</Text>
                   <Text style={styles.userSubtitle}>Student</Text>
                 </View>
               </View>
